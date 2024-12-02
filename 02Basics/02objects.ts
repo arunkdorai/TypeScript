@@ -1,29 +1,61 @@
-const User = {
-    name: "arun",
-    email: "arun@gmail.com",
-    isActive: true
-}
+// const User = {
+//     name: "arun",
+//     email: "arun@gmail.com",
+//     isActive: true
+// }
 
-function createUser({name: string, isPaid: boolean}) {}
+// function createUser({name: string, isPaid: boolean}) {}
 
-let newUser = {name: "arun", isPaid: false, email: "arun@gmail.com"}
+// let newUser = {name: "arun", isPaid: false, email: "arun@gmail.com"}
 
-createUser(newUser)
+// createUser(newUser)
 
-function createCourse():{name: string, price: number}{
-    return {name: "reactjs", price: 399}
-}
+// function createCourse():{name: string, price: number}{
+//     return {name: "reactjs", price: 399}
+// }
+
+// type User = {
+//     name: string;
+//     email: string;
+//     isActive: boolean
+// }
+
+// function createUser1(user: User): User{
+//     return {name: "", email: "", isActive: true}
+// }
+
+// createUser1({name: "", email: "", isActive: true}) 
 
 type User = {
-    name: string;
-    email: string;
+    readonly _id: string
+    name: string
+    email: string
     isActive: boolean
+    credcardDetails?: number
 }
 
-function createUser1(user: User): User{
-    return {name: "", email: "", isActive: true}
+let myUser: User = {
+    _id: "12345",
+    name: "arun",
+    email: "arun@gmail.com",
+    isActive: false,
+    credcardDetails: 4564
+    
 }
 
-createUser1({name: "", email: "", isActive: true}) 
+type cardNumber = {
+    cardnumber: string
+}
+
+type cardDate = {
+    cardDate: string
+}
+
+type cardDetails = cardNumber & cardDate & {
+    cvv: number
+}
+
+myUser.email = "h@gmail.com"
+// myUser._id = "456"
 
 export {}
