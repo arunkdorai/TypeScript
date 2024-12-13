@@ -1,3 +1,4 @@
+"use strict";
 function checkHeight(my_height) {
     if (isNaN(my_height))
         throw new Error("notANumberError");

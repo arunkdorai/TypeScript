@@ -1,1 +1,2 @@
-var arSeat = "aisle" /* SeatChoice.AISLE */;
+"use strict";
+const arSeat = "aisle" /* SeatChoice.AISLE */;

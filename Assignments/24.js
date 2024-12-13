@@ -1,71 +1,81 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
     };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var readline = require("readline");
-var rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-var Area = /** @class */ (function () {
-    function Area() {
+const readline = __importStar(require("readline"));
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+class Area {
+    circle(radius) {
+        return Math.PI * radius ** 2;
     }
-    Area.prototype.circle = function (radius) {
-        return Math.PI * Math.pow(radius, 2);
-    };
-    Area.prototype.square = function (side) {
-        return Math.pow(side, 2);
-    };
-    Area.prototype.rectangle = function (length, breadth) {
+    square(side) {
+        return side ** 2;
+    }
+    rectangle(length, breadth) {
         return length * breadth;
-    };
-    Area.prototype.triangle = function (base, height) {
-        return 0.5 * base * height;
-    };
-    return Area;
-}());
-var MyClass = /** @class */ (function (_super) {
-    __extends(MyClass, _super);
-    function MyClass() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    MyClass.prototype.main = function () {
-        var _this = this;
-        rl.question("Enter your choice (1: Circle, 2: Square, 3: Rectangle, 4: Triangle): ", function (choice) {
+    triangle(base, height) {
+        return 0.5 * base * height;
+    }
+}
+class MyClass extends Area {
+    main() {
+        rl.question("Enter your choice (1: Circle, 2: Square, 3: Rectangle, 4: Triangle): ", (choice) => {
             switch (Number(choice)) {
                 case 1:
-                    rl.question("Enter radius: ", function (radius) {
-                        console.log("Area of Circle:", _this.circle(Number(radius)));
+                    rl.question("Enter radius: ", (radius) => {
+                        console.log("Area of Circle:", this.circle(Number(radius)));
                         rl.close();
                     });
                     break;
                 case 2:
-                    rl.question("Enter side length: ", function (side) {
-                        console.log("Area of Square:", _this.square(Number(side)));
+                    rl.question("Enter side length: ", (side) => {
+                        console.log("Area of Square:", this.square(Number(side)));
                         rl.close();
                     });
                     break;
                 case 3:
-                    rl.question("Enter length and breadth (space-separated): ", function (values) {
-                        var _a = values.split(' ').map(Number), length = _a[0], breadth = _a[1];
-                        console.log("Area of Rectangle:", _this.rectangle(length, breadth));
+                    rl.question("Enter length and breadth (space-separated): ", (values) => {
+                        const [length, breadth] = values.split(' ').map(Number);
+                        console.log("Area of Rectangle:", this.rectangle(length, breadth));
                         rl.close();
                     });
                     break;
                 case 4:
-                    rl.question("Enter base and height (space-separated): ", function (values) {
-                        var _a = values.split(' ').map(Number), base = _a[0], height = _a[1];
-                        console.log("Area of Triangle:", _this.triangle(base, height));
+                    rl.question("Enter base and height (space-separated): ", (values) => {
+                        const [base, height] = values.split(' ').map(Number);
+                        console.log("Area of Triangle:", this.triangle(base, height));
                         rl.close();
                     });
                     break;
@@ -74,8 +84,7 @@ var MyClass = /** @class */ (function (_super) {
                     rl.close();
             }
         });
-    };
-    return MyClass;
-}(Area));
-var myClass = new MyClass();
+    }
+}
+const myClass = new MyClass();
 myClass.main();

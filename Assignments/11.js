@@ -1,3 +1,4 @@
-var array = [11, 20, 34, 50, 33];
-var evenCount = array.filter(function (num) { return num % 2 === 0; }).length;
-console.log("Number of even numbers: ".concat(evenCount));
+"use strict";
+const array = [11, 20, 34, 50, 33];
+const evenCount = array.filter(num => num % 2 === 0).length;
+console.log(`Number of even numbers: ${evenCount}`);

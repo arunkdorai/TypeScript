@@ -1,17 +1,35 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
     };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
     };
 })();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -23,143 +41,104 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var readline = require("readline");
+const readline = __importStar(require("readline"));
 // Base Class: User
-var User = /** @class */ (function () {
-    function User(name) {
+class User {
+    constructor(name) {
         this.name = name;
     }
-    User.prototype.borrowBook = function (book) {
-        console.log("".concat(this.name, " borrowed the book: ").concat(book));
-    };
-    return User;
-}());
+    borrowBook(book) {
+        console.log(`${this.name} borrowed the book: ${book}`);
+    }
+}
 // Derived Class: RegularMember
-var RegularMember = /** @class */ (function (_super) {
-    __extends(RegularMember, _super);
-    function RegularMember(name) {
-        var _this = _super.call(this, name) || this;
-        _this.maxBorrowLimit = 2;
-        return _this;
+class RegularMember extends User {
+    constructor(name) {
+        super(name);
+        this.maxBorrowLimit = 2;
     }
-    RegularMember.prototype.calculateLateFees = function (daysLate) {
-        var feePerDay = 2;
+    calculateLateFees(daysLate) {
+        const feePerDay = 2;
         return daysLate * feePerDay;
-    };
-    RegularMember.prototype.borrowBook = function (book) {
-        console.log("".concat(this.name, " (Regular Member) borrowed the book: ").concat(book, ". Limit: ").concat(this.maxBorrowLimit));
-    };
-    return RegularMember;
-}(User));
+    }
+    borrowBook(book) {
+        console.log(`${this.name} (Regular Member) borrowed the book: ${book}. Limit: ${this.maxBorrowLimit}`);
+    }
+}
 // Derived Class: PremiumMember
-var PremiumMember = /** @class */ (function (_super) {
-    __extends(PremiumMember, _super);
-    function PremiumMember(name) {
-        var _this = _super.call(this, name) || this;
-        _this.maxBorrowLimit = 5;
-        return _this;
+class PremiumMember extends User {
+    constructor(name) {
+        super(name);
+        this.maxBorrowLimit = 5;
     }
-    PremiumMember.prototype.calculateLateFees = function (daysLate) {
-        var feePerDay = 1;
+    calculateLateFees(daysLate) {
+        const feePerDay = 1;
         return daysLate * feePerDay;
-    };
-    PremiumMember.prototype.borrowBook = function (book) {
-        console.log("".concat(this.name, " (Premium Member) borrowed the book: ").concat(book, ". Limit: ").concat(this.maxBorrowLimit));
-    };
-    return PremiumMember;
-}(User));
+    }
+    borrowBook(book) {
+        console.log(`${this.name} (Premium Member) borrowed the book: ${book}. Limit: ${this.maxBorrowLimit}`);
+    }
+}
 // Library Class
-var Library = /** @class */ (function () {
-    function Library() {
+class Library {
+    constructor() {
         this.books = ["Book A", "Book B", "Book C", "Book D"];
     }
-    Library.prototype.listAvailableBooks = function () {
+    listAvailableBooks() {
         console.log("Available Books:", this.books.join(", "));
-    };
-    Library.prototype.lendBook = function (book, user) {
-        var index = this.books.indexOf(book);
+    }
+    lendBook(book, user) {
+        const index = this.books.indexOf(book);
         if (index !== -1) {
             this.books.splice(index, 1);
             user.borrowBook(book);
         }
         else {
-            console.log("".concat(book, " is not available."));
+            console.log(`${book} is not available.`);
         }
-    };
-    return Library;
-}());
+    }
+}
 // Interactive Input Setup
-var rl = readline.createInterface({
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
 // Main Function
 function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var library;
-        return __generator(this, function (_a) {
-            library = new Library();
-            rl.question("Enter your name: ", function (name) {
-                rl.question("Are you a Regular Member or Premium Member? (type 'regular' or 'premium'): ", function (memberType) {
-                    var user;
-                    if (memberType.toLowerCase() === "regular") {
-                        user = new RegularMember(name);
-                    }
-                    else {
-                        user = new PremiumMember(name);
-                    }
-                    library.listAvailableBooks();
-                    rl.question("Enter the book you want to borrow: ", function (book) {
-                        library.lendBook(book, user);
-                        rl.question("Do you want to calculate late fees? (yes/no): ", function (calculateFees) {
-                            if (calculateFees.toLowerCase() === "yes") {
-                                rl.question("Enter the number of days late: ", function (daysLateStr) {
-                                    var daysLate = parseInt(daysLateStr);
-                                    if (user instanceof RegularMember) {
-                                        console.log("Late Fees: $".concat(user.calculateLateFees(daysLate)));
-                                    }
-                                    else if (user instanceof PremiumMember) {
-                                        console.log("Late Fees: $".concat(user.calculateLateFees(daysLate)));
-                                    }
-                                    rl.close();
-                                });
-                            }
-                            else {
+    return __awaiter(this, void 0, void 0, function* () {
+        const library = new Library();
+        rl.question("Enter your name: ", (name) => {
+            rl.question("Are you a Regular Member or Premium Member? (type 'regular' or 'premium'): ", (memberType) => {
+                let user;
+                if (memberType.toLowerCase() === "regular") {
+                    user = new RegularMember(name);
+                }
+                else {
+                    user = new PremiumMember(name);
+                }
+                library.listAvailableBooks();
+                rl.question("Enter the book you want to borrow: ", (book) => {
+                    library.lendBook(book, user);
+                    rl.question("Do you want to calculate late fees? (yes/no): ", (calculateFees) => {
+                        if (calculateFees.toLowerCase() === "yes") {
+                            rl.question("Enter the number of days late: ", (daysLateStr) => {
+                                const daysLate = parseInt(daysLateStr);
+                                if (user instanceof RegularMember) {
+                                    console.log(`Late Fees: $${user.calculateLateFees(daysLate)}`);
+                                }
+                                else if (user instanceof PremiumMember) {
+                                    console.log(`Late Fees: $${user.calculateLateFees(daysLate)}`);
+                                }
                                 rl.close();
-                            }
-                        });
+                            });
+                        }
+                        else {
+                            rl.close();
+                        }
                     });
                 });
             });
-            return [2 /*return*/];
         });
     });
 }

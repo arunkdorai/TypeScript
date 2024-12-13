@@ -5,7 +5,7 @@
 //     isActive: true
 // }
 Object.defineProperty(exports, "__esModule", { value: true });
-var myUser = {
+let myUser = {
     _id: "12345",
     name: "arun",
     email: "arun@gmail.com",
@@ -13,4 +13,3 @@ var myUser = {
     credcardDetails: 4564
 };
 myUser.email = "h@gmail.com";
-myUser._id = "456";
